@@ -11,13 +11,15 @@ namespace daily_task.UI
 {
     public static class ActiveView
     {
-        public static ShellViewModel Parent;
+        public static ShellViewModel? Parent;
 
         /// <summary>
         /// Realiza a abertura de um viewmodel através do ShellViewModel
         /// </summary>
         public static async Task OpenItem<T>(params object[] args) where T : IScreen
         {
+            if (Parent == null) throw new InvalidOperationException("Parent não foi inicializado.");
+
             var viewModel = (T)DependencyResolver.CreateInstance(typeof(T), args);
             await Parent.ActivateItemAsync(viewModel);
         }

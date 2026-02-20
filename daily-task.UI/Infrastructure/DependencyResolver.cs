@@ -4,7 +4,7 @@ namespace daily_task.UI.Infrastructure
 {
     public static class DependencyResolver
     {
-        private static SimpleContainer _container;
+        private static SimpleContainer? _container;
 
         /// <summary>
         /// Configura o contêiner
@@ -67,7 +67,7 @@ namespace daily_task.UI.Infrastructure
                 // Se conseguimos preencher todos os parâmetros, criamos a instância
                 if (arguments.Count == parameters.Length)
                 {
-                    return Activator.CreateInstance(type, arguments.ToArray());
+                    return Activator.CreateInstance(type, arguments.ToArray())!;
                 }
             }
 
