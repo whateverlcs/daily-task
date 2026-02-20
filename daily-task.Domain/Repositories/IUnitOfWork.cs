@@ -8,6 +8,6 @@ namespace daily_task.Domain.Repositories
 {
     public interface IUnitOfWork
     {
-        public Task Commit();
+        public System.Threading.Tasks.Task Commit();
     }
 }
