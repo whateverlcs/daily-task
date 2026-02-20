@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using daily_task.Application;
 using daily_task.Infrastructure;
 using daily_task.Infrastructure.Extensions;
 using daily_task.Infrastructure.Migrations;
@@ -35,8 +36,9 @@ namespace daily_task.UI
                 .Build();
 
 
-            // Setup da Infra
+            // Setup do Application e Infra
             var services = new ServiceCollection();
+            services.AddApplication(configuration);
             services.AddInfrastructure(configuration);
 
             // Provider para as migrations

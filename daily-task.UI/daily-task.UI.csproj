@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\daily-task.Application\daily-task.Application.csproj" />
+    <ProjectReference Include="..\daily-task.Exceptions\daily-task.Exceptions.csproj" />
     <ProjectReference Include="..\daily-task.Infrastructure\daily-task.Infrastructure.csproj" />
   </ItemGroup>
 
