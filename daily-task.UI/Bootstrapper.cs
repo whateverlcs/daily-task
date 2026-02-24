@@ -5,82 +5,69 @@ using daily_task.Infrastructure.Extensions;
 using daily_task.Infrastructure.Migrations;
 using daily_task.UI.Infrastructure;
 using daily_task.UI.ViewModels;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace daily_task.UI
 {
     public class Bootstrapper : BootstrapperBase
     {
-        private readonly SimpleContainer _container = new SimpleContainer();
+        private IServiceProvider _serviceProvider;
 
-        public Bootstrapper()
-        {
-            Initialize();
-        }
+        public Bootstrapper() => Initialize();
 
         protected override void Configure()
         {
-            // Carrega o JSON
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .Build();
 
-
-            // Setup do Application e Infra
             var services = new ServiceCollection();
+
+            // Registro de Serviços
             services.AddApplication(configuration);
             services.AddInfrastructure(configuration);
 
-            // Provider para as migrations
-            var serviceProvider = services.BuildServiceProvider();
+            // Registro de ViewModels e Infra do Caliburn
+            services.AddTransient<ShellViewModel>();
+            services.AddTransient<IndexViewModel>();
+            services.AddSingleton<IWindowManager, WindowManager>();
+            services.AddSingleton<IEventAggregator, EventAggregator>();
 
-            // Registro do container do Caliburn
-            _container.Instance<IConfiguration>(configuration);
-            _container.Instance<IServiceProvider>(serviceProvider);
+            // Registra instâncias necessárias para o MigrateDatabase
+            services.AddSingleton<IConfiguration>(configuration);
 
-            // Registros do Caliburn (WindowManager, ViewModels, etc)
-            _container.Singleton<IWindowManager, WindowManager>();
-            _container.Singleton<IEventAggregator, EventAggregator>();
-            _container.PerRequest<ShellViewModel>();
-            _container.PerRequest<IndexViewModel>();
-
-            // Registro do ServiceProvider
-            DependencyResolver.SetContainer(_container);
+            _serviceProvider = services.BuildServiceProvider();
+            DependencyResolver.SetServiceProvider(_serviceProvider);
         }
 
-        protected override async void OnStartup(object sender, StartupEventArgs e)
+        protected override void OnStartup(object sender, StartupEventArgs e)
         {
             MigrateDatabase();
-
-            await DisplayRootViewForAsync<ShellViewModel>();
+            DisplayRootViewForAsync<ShellViewModel>();
         }
 
         private void MigrateDatabase()
         {
-            var configuration = _container.GetInstance<IConfiguration>();
-
+            var configuration = _serviceProvider.GetRequiredService<IConfiguration>();
             if (configuration.IsUnitTestEnviroment()) return;
 
-            var databaseType = configuration.DatabaseType();
-            var connectionString = configuration.ConnetionString();
-
-            var serviceProvider = _container.GetInstance<IServiceProvider>();
-
-            DatabaseMigration.Migrate(databaseType, connectionString, serviceProvider);
+            DatabaseMigration.Migrate(
+                configuration.DatabaseType(),
+                configuration.ConnetionString(),
+                _serviceProvider);
         }
 
-        protected override object GetInstance(Type service, string key) => _container.GetInstance(service, key);
-        protected override IEnumerable<object> GetAllInstances(Type service) => _container.GetAllInstances(service);
-        protected override void BuildUp(object instance) => _container.BuildUp(instance);
+        protected override object GetInstance(Type service, string key) =>
+            key == null ? _serviceProvider.GetRequiredService(service) : _serviceProvider.GetRequiredKeyedService(service, key);
+
+        protected override IEnumerable<object> GetAllInstances(Type service) =>
+            _serviceProvider.GetServices(service);
+
+        protected override void BuildUp(object instance)
+        { }
     }
 }
