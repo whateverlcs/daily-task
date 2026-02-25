@@ -1,12 +1,6 @@
 ﻿using Caliburn.Micro;
 using daily_task.Application.Models;
 using daily_task.Application.UseCases.Task.GetAllTasks;
-using daily_task.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace daily_task.UI.ViewModels
 {
@@ -21,6 +15,18 @@ namespace daily_task.UI.ViewModels
             {
                 _loading = value;
                 NotifyOfPropertyChange(() => Loading);
+            }
+        }
+
+        private bool _showMessageWithNoTasks;
+
+        public bool ShowMessageWithNoTasks
+        {
+            get { return _showMessageWithNoTasks; }
+            set
+            {
+                _showMessageWithNoTasks = value;
+                NotifyOfPropertyChange(() => ShowMessageWithNoTasks);
             }
         }
 
@@ -49,6 +55,8 @@ namespace daily_task.UI.ViewModels
         {
             base.OnViewLoaded(view);
 
+            Loading = true;
+
             _ = LoadTasksAsync();
         }
 
@@ -58,6 +66,21 @@ namespace daily_task.UI.ViewModels
 
             Tasks.Clear();
             Tasks.AddRange(tasks);
+
+            ShowMessageWithNoTasks = Tasks.Count == 0;
+            Loading = false;
+        }
+
+        public void AddTask()
+        {
+        }
+
+        public void EditTask(int id)
+        {
+        }
+
+        public void DeleteTask(int id)
+        {
         }
     }
 }

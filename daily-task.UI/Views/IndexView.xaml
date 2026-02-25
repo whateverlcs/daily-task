@@ -3,10 +3,140 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:helper="clr-namespace:daily_task.UI.Helpers"
              xmlns:local="clr-namespace:daily_task.UI.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:cal="http://www.caliburnproject.org"
+             Background="#F8FAFC"
+             FontFamily="{DynamicResource RobotoFont}"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="700">
+    <UserControl.Resources>
+    <BooleanToVisibilityConverter x:Key="VisibilityConverter" />
+    <helper:InvertedBooleanToVisibilityConverterHelper x:Key="InvertedVisibilityConverter"/>
+    </UserControl.Resources>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="10"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel x:Name="EmptyStatePanel" Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Visibility="{Binding ShowMessageWithNoTasks, Converter={StaticResource VisibilityConverter}}"
+    HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image Source="/Resources/Images/task-not-found.png" Width="700" Height="500"/>
+            <TextBlock Text="Create new tasks to receive amazing rewards!"
+            Foreground="#353535" FontSize="30"
+            HorizontalAlignment="Center" Margin="10" TextAlignment="Center" TextWrapping="Wrap" MaxWidth="600"/>
+        </StackPanel>
 
+        <TextBlock Grid.Column="1" Grid.Row="1" Text="My Tasks" Foreground="#0F172A" FontSize="32" FontWeight="Bold" HorizontalAlignment="Center" Margin="10" TextAlignment="Center" MaxWidth="600" Visibility="{Binding Tasks.Count, Converter={StaticResource InvertedVisibilityConverter}}"/>
+
+        <ScrollViewer Grid.Row="3" Grid.Column="1" VerticalScrollBarVisibility="Auto" MaxHeight="790">
+            <ItemsControl x:Name="Tasks"
+              Visibility="{Binding Tasks.Count, Converter={StaticResource InvertedVisibilityConverter}}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="#FFFFFF" BorderBrush="#E2E8F0" BorderThickness="1"
+                    CornerRadius="10" Margin="0,0,10,15" Padding="20">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="50" />
+                                    <RowDefinition Height="17" />
+                                </Grid.RowDefinitions>
+
+                                <Button Grid.Column="0" Grid.Row="0" Style="{StaticResource MaterialDesignIconButton}"
+                                cal:Message.Attach="AddTask()"
+                                VerticalAlignment="Top" Width="50" Height="20">
+                                    <materialDesign:PackIcon Kind="CheckboxOutline" Foreground="#059669" Width="23" Height="23"/>
+                                </Button>
+
+                                <Button Grid.Column="2" Grid.Row="3" Grid.RowSpan="2" Style="{StaticResource MaterialDesignIconButton}"
+                                cal:Message.Attach="EditTask($this.DataContext.Id)" VerticalAlignment="Bottom" Width="39" Height="19" Margin="0 0 20 0">
+                                    <materialDesign:PackIcon Kind="PencilBoxOutline" Foreground="#64748B" Width="21" Height="22"/>
+                                </Button>
+
+                                <Button Grid.Column="2" Grid.Row="3" Grid.RowSpan="2" Style="{StaticResource MaterialDesignIconButton}"
+                                cal:Message.Attach="DeleteTask($this.DataContext.Id)" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="39" Height="19" Padding="0">
+                                    <materialDesign:PackIcon Kind="DeleteOutline" Foreground="Red" Width="21" Height="22"/>
+                                </Button>
+
+                                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Name}" Foreground="#0F172A" FontSize="18" FontWeight="Medium"/>
+
+                                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Description}" Foreground="#0F172A" FontSize="14" FontWeight="Regular" TextWrapping="Wrap" MaxWidth="900"/>
+
+                                <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding CreatedDate}" Foreground="#0F172A" FontSize="12" FontWeight="Light"/>
+
+
+
+                                <StackPanel Grid.Column="2" HorizontalAlignment="Right">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,10">
+                                        <StackPanel Orientation="Horizontal" Margin="0,0,15,0">
+                                            <materialDesign:PackIcon Kind="Gold" Foreground="#D97706" VerticalAlignment="Center"/>
+                                            <TextBlock Text="{Binding Gold}" Foreground="#D97706" FontWeight="Regular" Margin="5,4,0,0"/>
+                                        </StackPanel>
+
+                                        <materialDesign:PackIcon Width="20" Height="20" VerticalAlignment="Center">
+                                            <materialDesign:PackIcon.Style>
+                                                <Style TargetType="materialDesign:PackIcon">
+                                                    <Setter Property="Kind" Value="Menu"/>
+                                                    <Setter Property="Foreground" Value="Orange"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Priority}" Value="Very Low">
+                                                            <Setter Property="Kind" Value="ChevronDoubleDown"/>
+                                                            <Setter Property="Foreground" Value="#60A5FA"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Priority}" Value="Low">
+                                                            <Setter Property="Kind" Value="ChevronDown"/>
+                                                            <Setter Property="Foreground" Value="#60A5FA"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Priority}" Value="High">
+                                                            <Setter Property="Kind" Value="ChevronUp"/>
+                                                            <Setter Property="Foreground" Value="Red"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Priority}" Value="Very High">
+                                                            <Setter Property="Kind" Value="ChevronDoubleUp"/>
+                                                            <Setter Property="Foreground" Value="Red"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </materialDesign:PackIcon.Style>
+                                        </materialDesign:PackIcon>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        <Grid Grid.Column="0" Grid.ColumnSpan="9" Grid.Row="0" Grid.RowSpan="8" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Visibility="{Binding Loading, Converter={StaticResource VisibilityConverter}}" Background="{StaticResource MahApps.Brushes.Gray.SemiTransparent}">
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1000" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="180"></RowDefinition>
+                    <RowDefinition Height="170"></RowDefinition>
+                    <RowDefinition Height="180"></RowDefinition>
+                </Grid.RowDefinitions>
+                <materialDesign:Card Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Width="200" Height="190" Padding="8" Background="GhostWhite" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" UniformCornerRadius="2" />
+                <TextBlock Grid.Column="0" Grid.Row="1" Text="LOADING" HorizontalAlignment="Center" />
+                <ProgressBar Grid.Column="0" Grid.Row="1" Width="100" Height="60" Style="{DynamicResource MaterialDesignCircularProgressBar}" IsIndeterminate="True" Value="33"/>
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>
