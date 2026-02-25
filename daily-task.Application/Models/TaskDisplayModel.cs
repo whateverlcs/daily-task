@@ -7,5 +7,6 @@
         public string Priority { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public string CreatedDate { get; set; } = string.Empty;
+        public string Gold { get; set; } = string.Empty;
     }
 }

@@ -18,7 +18,11 @@ namespace daily_task.Application.Services.AutoMapper
 
         private void DomainToResponse()
         {
-            CreateMap<Domain.Entities.Task, TaskDisplayModel>();
+            CreateMap<Domain.Entities.Task, TaskDisplayModel>()
+                .ForMember(dest => dest.Priority, opt => opt.MapFrom(src =>
+                    src.Priority.ToString().Replace("_", " ")))
+                .ForMember(dest => dest.CreatedDate, opt => opt.MapFrom(src =>
+                    $"Criado em {src.CreatedOn:dd/MM}"));
         }
     }
 }
