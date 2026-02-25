@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36811.4 d17.14
+VisualStudioVersion = 17.14.36811.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "daily-task.UI", "daily-task.UI\daily-task.UI.csproj", "{F0D825F2-718C-46E7-A5C7-1698B30FBB4D}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "daily-task.Domain", "daily-task.Domain\daily-task.Domain.csproj", "{08771ABD-53BD-4D05-8B53-DE40F0E50ED2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "daily-task.Infrastructure", "daily-task.Infrastructure\daily-task.Infrastructure.csproj", "{916DEA66-40CB-44D0-9E04-FCF86771F82A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "daily-task.Exceptions", "daily-task.Exceptions\daily-task.Exceptions.csproj", "{1F188BB9-F93F-4832-973F-C6C8ACEE8E69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{916DEA66-40CB-44D0-9E04-FCF86771F82A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{916DEA66-40CB-44D0-9E04-FCF86771F82A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{916DEA66-40CB-44D0-9E04-FCF86771F82A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F188BB9-F93F-4832-973F-C6C8ACEE8E69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F188BB9-F93F-4832-973F-C6C8ACEE8E69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F188BB9-F93F-4832-973F-C6C8ACEE8E69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F188BB9-F93F-4832-973F-C6C8ACEE8E69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

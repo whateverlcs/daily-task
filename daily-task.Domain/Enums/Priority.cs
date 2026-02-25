@@ -8,10 +8,10 @@ namespace daily_task.Domain.Enums
 {
     public enum Priority
     {
-        Very_High = 0,
-        High = 1,
+        Very_Low = 0,
+        Low = 1,
         Medium = 2,
-        Low = 3,
-        Very_Low = 4
+        High = 3,
+        Very_High = 4
     }
 }

@@ -1,17 +1,14 @@
 ﻿using daily_task.Domain.Enums;
 using daily_task.Domain.Repositories;
+using daily_task.Domain.Repositories.Task;
 using daily_task.Infrastructure.DataAccess;
+using daily_task.Infrastructure.DataAccess.Repositories;
 using daily_task.Infrastructure.Extensions;
 using FluentMigrator.Runner;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace daily_task.Infrastructure
 {
@@ -46,6 +43,10 @@ namespace daily_task.Infrastructure
         private static void AddRepositories(IServiceCollection services)
         {
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.AddScoped<ITaskWriteOnlyRepository, TaskRepository>();
+            services.AddScoped<ITaskReadOnlyRepository, TaskRepository>();
+            services.AddScoped<ITaskUpdateOnlyRepository, TaskRepository>();
         }
 
         private static void AddFluentMigrator_SqlServer(IServiceCollection services, IConfiguration configuration)
