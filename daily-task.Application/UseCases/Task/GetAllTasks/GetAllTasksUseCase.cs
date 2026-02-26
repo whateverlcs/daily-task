@@ -21,7 +21,7 @@ namespace daily_task.Application.UseCases.Task.GetAllTasks
         {
             var tasks = await _repository.GetAllTasksActive();
 
-            var response = _mapper.Map<IList<TaskDisplayModel>>(tasks);
+            var response = _mapper.Map<IList<TaskDisplayModel>>(tasks.OrderByDescending(x => x.CreatedOn));
 
             return response;
         }

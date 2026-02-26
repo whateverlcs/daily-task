@@ -17,9 +17,9 @@
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10"></ColumnDefinition>
+            <ColumnDefinition Width="80"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="10"></ColumnDefinition>
+            <ColumnDefinition Width="80"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="10"></RowDefinition>
@@ -38,7 +38,7 @@
 
         <TextBlock Grid.Column="1" Grid.Row="1" Text="My Tasks" Foreground="#0F172A" FontSize="32" FontWeight="Bold" HorizontalAlignment="Center" Margin="10" TextAlignment="Center" MaxWidth="600" Visibility="{Binding Tasks.Count, Converter={StaticResource InvertedVisibilityConverter}}"/>
 
-        <ScrollViewer Grid.Row="3" Grid.Column="1" VerticalScrollBarVisibility="Auto" MaxHeight="790">
+        <ScrollViewer Grid.Row="3" Grid.Column="1" VerticalScrollBarVisibility="Auto" MaxHeight="600">
             <ItemsControl x:Name="Tasks"
               Visibility="{Binding Tasks.Count, Converter={StaticResource InvertedVisibilityConverter}}">
                 <ItemsControl.ItemTemplate>
@@ -58,19 +58,19 @@
                                     <RowDefinition Height="17" />
                                 </Grid.RowDefinitions>
 
-                                <Button Grid.Column="0" Grid.Row="0" Style="{StaticResource MaterialDesignIconButton}"
-                                cal:Message.Attach="AddTask()"
-                                VerticalAlignment="Top" Width="50" Height="20">
+                                <Button Grid.Column="0" Grid.Row="0" Background="Transparent" BorderThickness="0" Padding="0"
+                                cal:Message.Attach="TaskCompleted()"
+                                VerticalAlignment="Top" Width="50" Height="20" ToolTip="Click to mark the task as completed">
                                     <materialDesign:PackIcon Kind="CheckboxOutline" Foreground="#059669" Width="23" Height="23"/>
                                 </Button>
 
-                                <Button Grid.Column="2" Grid.Row="3" Grid.RowSpan="2" Style="{StaticResource MaterialDesignIconButton}"
-                                cal:Message.Attach="EditTask($this.DataContext.Id)" VerticalAlignment="Bottom" Width="39" Height="19" Margin="0 0 20 0">
+                                <Button Grid.Column="2" Grid.Row="3" Grid.RowSpan="2" Background="Transparent" BorderThickness="0" Padding="0"
+                                cal:Message.Attach="EditTask($this.DataContext.Id)" VerticalAlignment="Bottom" Width="39" Height="19" Margin="0 0 20 0" ToolTip="Click to edit the current task">
                                     <materialDesign:PackIcon Kind="PencilBoxOutline" Foreground="#64748B" Width="21" Height="22"/>
                                 </Button>
 
-                                <Button Grid.Column="2" Grid.Row="3" Grid.RowSpan="2" Style="{StaticResource MaterialDesignIconButton}"
-                                cal:Message.Attach="DeleteTask($this.DataContext.Id)" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="39" Height="19" Padding="0">
+                                <Button Grid.Column="2" Grid.Row="3" Grid.RowSpan="2" Background="Transparent" BorderThickness="0"
+                                cal:Message.Attach="DeleteTask($this.DataContext.Id)" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="39" Height="19" Padding="0" ToolTip="Click to delete the current task">
                                     <materialDesign:PackIcon Kind="DeleteOutline" Foreground="Red" Width="21" Height="22"/>
                                 </Button>
 
@@ -80,16 +80,14 @@
 
                                 <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding CreatedDate}" Foreground="#0F172A" FontSize="12" FontWeight="Light"/>
 
-
-
                                 <StackPanel Grid.Column="2" HorizontalAlignment="Right">
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,10">
-                                        <StackPanel Orientation="Horizontal" Margin="0,0,15,0">
+                                        <StackPanel Orientation="Horizontal" Margin="0,0,15,0" ToolTip="Gold earned when completed">
                                             <materialDesign:PackIcon Kind="Gold" Foreground="#D97706" VerticalAlignment="Center"/>
                                             <TextBlock Text="{Binding Gold}" Foreground="#D97706" FontWeight="Regular" Margin="5,4,0,0"/>
                                         </StackPanel>
 
-                                        <materialDesign:PackIcon Width="20" Height="20" VerticalAlignment="Center">
+                                        <materialDesign:PackIcon Width="20" Height="20" VerticalAlignment="Center" ToolTip="The priority of the task">
                                             <materialDesign:PackIcon.Style>
                                                 <Style TargetType="materialDesign:PackIcon">
                                                     <Setter Property="Kind" Value="Menu"/>
@@ -123,6 +121,13 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
+
+        <Button Grid.Column="2" Grid.Row="3" cal:Message.Attach="AddTask()" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="65" Height="65"
+            Background="Transparent" BorderThickness="0" Padding="0" ToolTip="Click to add a new task">
+            <materialDesign:PackIcon Kind="PlusBoxOutline"
+                             Foreground="#059669"
+                             Width="65" Height="65"/>
+        </Button>
         <Grid Grid.Column="0" Grid.ColumnSpan="9" Grid.Row="0" Grid.RowSpan="8" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Visibility="{Binding Loading, Converter={StaticResource VisibilityConverter}}" Background="{StaticResource MahApps.Brushes.Gray.SemiTransparent}">
             <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>
