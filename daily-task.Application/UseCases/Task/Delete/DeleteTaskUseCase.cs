@@ -21,7 +21,7 @@ namespace daily_task.Application.UseCases.Task.Delete
             _unitOfWork = unitOfWork;
         }
 
-        public async System.Threading.Tasks.Task Execute(long taskId)
+        public async System.Threading.Tasks.Task<bool> Execute(long taskId)
         {
             var task = await _repositoryRead.GetById(taskId);
 
@@ -31,6 +31,8 @@ namespace daily_task.Application.UseCases.Task.Delete
             await _repositoryWrite.Delete(taskId);
 
             await _unitOfWork.Commit();
+
+            return true;
         }
     }
 }

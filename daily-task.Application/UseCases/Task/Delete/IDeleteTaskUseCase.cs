@@ -2,6 +2,6 @@
 {
     public interface IDeleteTaskUseCase
     {
-        System.Threading.Tasks.Task Execute(long taskId);
+        System.Threading.Tasks.Task<bool> Execute(long taskId);
     }
 }
