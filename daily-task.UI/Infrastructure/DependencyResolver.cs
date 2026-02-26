@@ -9,6 +9,8 @@ namespace daily_task.UI.Infrastructure
         public static void SetServiceProvider(IServiceProvider serviceProvider)
             => _serviceProvider = serviceProvider;
 
+        public static IServiceProvider GetServiceProvider() => _serviceProvider;
+
         public static T GetService<T>() where T : notnull
             => _serviceProvider.GetRequiredService<T>();
     }
