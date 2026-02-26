@@ -75,9 +75,7 @@ namespace daily_task.UI.ViewModels
         {
         }
 
-        public void EditTask(int id)
-        {
-        }
+        public void EditTask(int id) => _ = ActiveView.OpenItem<EditTaskViewModel>(id);
 
         public void DeleteTask(int id)
         {
