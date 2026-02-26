@@ -71,7 +71,7 @@ namespace daily_task.UI.ViewModels
             Loading = false;
         }
 
-        public void AddTask()
+        public void TaskCompleted()
         {
         }
 
@@ -82,5 +82,7 @@ namespace daily_task.UI.ViewModels
         public void DeleteTask(int id)
         {
         }
+
+        public void AddTask() => _ = ActiveView.OpenItem<CreateTaskViewModel>();
     }
 }

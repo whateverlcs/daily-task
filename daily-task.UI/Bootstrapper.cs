@@ -9,6 +9,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.IO;
 using System.Windows;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Position;
 
 namespace daily_task.UI
 {
@@ -34,8 +37,28 @@ namespace daily_task.UI
             // Registro de ViewModels e Infra do Caliburn
             services.AddTransient<ShellViewModel>();
             services.AddTransient<IndexViewModel>();
+            services.AddTransient<CreateTaskViewModel>();
             services.AddSingleton<IWindowManager, WindowManager>();
             services.AddSingleton<IEventAggregator, EventAggregator>();
+
+            // Registro do Notifier para exibir notificações
+            services.AddSingleton<Notifier>(sp =>
+            {
+                return new Notifier(cfg =>
+                {
+                    cfg.PositionProvider = new WindowPositionProvider(
+                        parentWindow: System.Windows.Application.Current.MainWindow,
+                        corner: Corner.TopRight,
+                        offsetX: 10,
+                        offsetY: 10);
+
+                    cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                        notificationLifetime: TimeSpan.FromSeconds(5),
+                        maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+                    cfg.Dispatcher = System.Windows.Application.Current.Dispatcher;
+                });
+            });
 
             // Registra instâncias necessárias para o MigrateDatabase
             services.AddSingleton<IConfiguration>(configuration);
