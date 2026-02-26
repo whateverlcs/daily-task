@@ -24,7 +24,7 @@ namespace daily_task.Application.UseCases.Task.Update
             _mapper = mapper;
         }
 
-        public async System.Threading.Tasks.Task Execute(long taskId, NewTask request)
+        public async System.Threading.Tasks.Task<bool> Execute(long taskId, NewTask request)
         {
             Validate(request);
 
@@ -38,6 +38,8 @@ namespace daily_task.Application.UseCases.Task.Update
             _repository.Update(task);
 
             await _unitOfWork.Commit();
+
+            return true;
         }
 
         private static void Validate(NewTask request)
