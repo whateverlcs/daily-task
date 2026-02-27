@@ -1,5 +1,4 @@
 ﻿using daily_task.Application.Services.AutoMapper;
-using daily_task.Application.UseCases.Task.Delete;
 using daily_task.Application.UseCases.Task.GetAllTasks;
 using daily_task.Application.UseCases.Task.GetById;
 using daily_task.Application.UseCases.Task.Register;
@@ -34,7 +33,6 @@ namespace daily_task.Application
         {
             services.AddScoped<IRegisterTaskUseCase, RegisterTaskUseCase>();
             services.AddScoped<IUpdateTaskUseCase, UpdateTaskUseCase>();
-            services.AddScoped<IDeleteTaskUseCase, DeleteTaskUseCase>();
             services.AddScoped<IGetAllTasksUseCase, GetAllTasksUseCase>();
             services.AddScoped<IGetTaskByIdUseCase, GetTaskByIdUseCase>();
         }

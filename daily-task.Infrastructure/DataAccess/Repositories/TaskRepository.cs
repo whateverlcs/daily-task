@@ -12,13 +12,6 @@ namespace daily_task.Infrastructure.DataAccess.Repositories
 
         public async Task Add(Entities.Task task) => await _dbContext.Tasks.AddAsync(task);
 
-        public async Task Delete(long taskId)
-        {
-            var task = await _dbContext.Tasks.FindAsync(taskId);
-
-            _dbContext.Tasks.Remove(task!);
-        }
-
         async Task<Entities.Task?> ITaskReadOnlyRepository.GetById(long taskId)
         {
             return await _dbContext

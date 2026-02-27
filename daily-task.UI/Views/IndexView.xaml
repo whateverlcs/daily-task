@@ -64,14 +64,9 @@
                                     <materialDesign:PackIcon Kind="CheckboxOutline" Foreground="#059669" Width="23" Height="23"/>
                                 </Button>
 
-                                <Button Grid.Column="2" Grid.Row="3" Grid.RowSpan="2" Background="Transparent" BorderThickness="0" Padding="0"
-                                cal:Message.Attach="EditTask($this.DataContext.Id)" VerticalAlignment="Bottom" Width="39" Height="19" Margin="0 0 20 0" ToolTip="Click to edit the current task">
+                                <Button Grid.Column="2" Grid.Row="3" Background="Transparent" BorderThickness="0" Padding="0"
+                                cal:Message.Attach="EditTask($this.DataContext.Id)" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="20" Height="19" ToolTip="Click to edit the current task">
                                     <materialDesign:PackIcon Kind="PencilBoxOutline" Foreground="#64748B" Width="21" Height="22"/>
-                                </Button>
-
-                                <Button Grid.Column="2" Grid.Row="3" Grid.RowSpan="2" Background="Transparent" BorderThickness="0"
-                                cal:Message.Attach="DeleteTask($this.DataContext.Id)" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="39" Height="19" Padding="0" ToolTip="Click to delete the current task">
-                                    <materialDesign:PackIcon Kind="DeleteOutline" Foreground="Red" Width="21" Height="22"/>
                                 </Button>
 
                                 <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Name}" Foreground="#0F172A" FontSize="18" FontWeight="Medium"/>
