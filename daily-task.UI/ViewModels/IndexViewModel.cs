@@ -1,6 +1,5 @@
 ﻿using Caliburn.Micro;
 using daily_task.Application.Models;
-using daily_task.Application.UseCases.Task.Delete;
 using daily_task.Application.UseCases.Task.GetAllTasks;
 using ToastNotifications;
 using ToastNotifications.Messages;
@@ -51,12 +50,9 @@ namespace daily_task.UI.ViewModels
 
         private readonly IGetAllTasksUseCase _getAllTasksUseCase;
 
-        private readonly IDeleteTaskUseCase _deleteTaskUseCase;
-
-        public IndexViewModel(IGetAllTasksUseCase getAllTasksUseCase, IDeleteTaskUseCase deleteTaskUseCase, Notifier notifier)
+        public IndexViewModel(IGetAllTasksUseCase getAllTasksUseCase, Notifier notifier)
         {
             _getAllTasksUseCase = getAllTasksUseCase;
-            _deleteTaskUseCase = deleteTaskUseCase;
             _notifier = notifier;
         }
 
@@ -85,28 +81,6 @@ namespace daily_task.UI.ViewModels
         }
 
         public void EditTask(int id) => _ = ActiveView.OpenItem<EditTaskViewModel>(id);
-
-        public void DeleteTask(int id)
-        {
-            Loading = true;
-
-            _ = DeleteTaskAsync(id);
-        }
-
-        public async System.Threading.Tasks.Task DeleteTaskAsync(int id)
-        {
-            bool success = await _deleteTaskUseCase.Execute(id);
-
-            if (success)
-            {
-                _ = LoadTasksAsync();
-                ShowMessageFlashAsync("Success", ["Task deleted successfully!"]);
-            }
-            else
-            {
-                ShowMessageFlashAsync("Error", ["An error occurred while deleting the task."]);
-            }
-        }
 
         public void AddTask() => _ = ActiveView.OpenItem<CreateTaskViewModel>();
 
