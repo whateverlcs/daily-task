@@ -89,7 +89,7 @@ namespace daily_task.UI.ViewModels
 
         }
 
-        public void EditReward(int id) { }
+        public void EditReward(int id) => _ = ActiveView.OpenItem<EditRewardViewModel>(id);
 
         public void AddReward() => _ = ActiveView.OpenItem<CreateRewardViewModel>();
 
