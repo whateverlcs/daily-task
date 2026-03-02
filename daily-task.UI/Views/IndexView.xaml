@@ -25,10 +25,18 @@
             <RowDefinition Height="10"></RowDefinition>
             <RowDefinition Height="60"></RowDefinition>
             <RowDefinition Height="10"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="10"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel x:Name="EmptyStatePanel" Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Visibility="{Binding ShowMessageWithNoTasks, Converter={StaticResource VisibilityConverter}}"
+
+        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" Margin="0,0,15,0" ToolTip="Gold Balance" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <materialDesign:PackIcon Kind="Gold" Foreground="#D97706" VerticalAlignment="Center" Width="28" Height="28"/>
+            <TextBlock Text="{Binding TotalGold}" Foreground="#D97706" FontWeight="Medium" FontSize="18" Margin="5,4,0,0"/>
+        </StackPanel>
+
+        <StackPanel x:Name="EmptyStatePanel" Grid.Row="3" Grid.RowSpan="3" Grid.Column="1" Visibility="{Binding ShowMessageWithNoTasks, Converter={StaticResource VisibilityConverter}}"
     HorizontalAlignment="Center" VerticalAlignment="Center">
             <Image Source="/Resources/Images/task-not-found.png" Width="700" Height="500"/>
             <TextBlock Text="Create new tasks to receive amazing rewards!"
@@ -36,15 +44,15 @@
             HorizontalAlignment="Center" Margin="10" TextAlignment="Center" TextWrapping="Wrap" MaxWidth="600"/>
         </StackPanel>
 
-        <TextBlock Grid.Column="1" Grid.Row="1" Text="My Tasks" Foreground="#0F172A" FontSize="32" FontWeight="Bold" HorizontalAlignment="Center" Margin="10" TextAlignment="Center" MaxWidth="600" Visibility="{Binding Tasks.Count, Converter={StaticResource InvertedVisibilityConverter}}"/>
+        <TextBlock Grid.Column="1" Grid.Row="3" Text="My Tasks" Foreground="#0F172A" FontSize="32" FontWeight="Bold" HorizontalAlignment="Center" Margin="10" TextAlignment="Center" MaxWidth="600" Visibility="{Binding Tasks.Count, Converter={StaticResource InvertedVisibilityConverter}}"/>
 
-        <ScrollViewer Grid.Row="3" Grid.Column="1" VerticalScrollBarVisibility="Auto" MaxHeight="600">
+        <ScrollViewer Grid.Row="5" Grid.Column="1" VerticalScrollBarVisibility="Auto" MaxHeight="600">
             <ItemsControl x:Name="Tasks"
               Visibility="{Binding Tasks.Count, Converter={StaticResource InvertedVisibilityConverter}}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Border Background="#FFFFFF" BorderBrush="#E2E8F0" BorderThickness="1"
-                    CornerRadius="10" Margin="0,0,10,15" Padding="20">
+                    CornerRadius="10" Margin="0,0,10,15" Padding="20" Width="1070">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="50" />
@@ -59,7 +67,7 @@
                                 </Grid.RowDefinitions>
 
                                 <Button Grid.Column="0" Grid.Row="0" Background="Transparent" BorderThickness="0" Padding="0"
-                                cal:Message.Attach="TaskCompleted()"
+                                cal:Message.Attach="TaskCompleted($this.DataContext.Id)"
                                 VerticalAlignment="Top" Width="50" Height="20" ToolTip="Click to mark the task as completed">
                                     <materialDesign:PackIcon Kind="CheckboxOutline" Foreground="#059669" Width="23" Height="23"/>
                                 </Button>
@@ -117,13 +125,13 @@
             </ItemsControl>
         </ScrollViewer>
 
-        <Button Grid.Column="2" Grid.Row="3" cal:Message.Attach="AddTask()" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="65" Height="65"
+        <Button Grid.Column="2" Grid.Row="5" cal:Message.Attach="AddTask()" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="65" Height="65"
             Background="Transparent" BorderThickness="0" Padding="0" ToolTip="Click to add a new task">
             <materialDesign:PackIcon Kind="PlusBoxOutline"
                              Foreground="#059669"
                              Width="65" Height="65"/>
         </Button>
-        <Grid Grid.Column="0" Grid.ColumnSpan="9" Grid.Row="0" Grid.RowSpan="8" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Visibility="{Binding Loading, Converter={StaticResource VisibilityConverter}}" Background="{StaticResource MahApps.Brushes.Gray.SemiTransparent}">
+        <Grid Grid.Column="0" Grid.ColumnSpan="9" Grid.Row="0" Grid.RowSpan="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Visibility="{Binding Loading, Converter={StaticResource VisibilityConverter}}" Background="{StaticResource MahApps.Brushes.Gray.SemiTransparent}">
             <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1000" />
