@@ -2,6 +2,7 @@
 using daily_task.Domain.Repositories;
 using daily_task.Domain.Repositories.Profile;
 using daily_task.Domain.Repositories.Rank;
+using daily_task.Domain.Repositories.Reward;
 using daily_task.Domain.Repositories.Task;
 using daily_task.Infrastructure.DataAccess;
 using daily_task.Infrastructure.DataAccess.Repositories;
@@ -53,6 +54,9 @@ namespace daily_task.Infrastructure
             services.AddScoped<IProfileWriteOnlyRepository, ProfileRepository>();
             services.AddScoped<IProfileReadOnlyRepository, ProfileRepository>();
             services.AddScoped<IProfileUpdateOnlyRepository, ProfileRepository>();
+            services.AddScoped<IRewardWriteOnlyRepository, RewardRepository>();
+            services.AddScoped<IRewardReadOnlyRepository, RewardRepository>();
+            services.AddScoped<IRewardUpdateOnlyRepository, RewardRepository>();
         }
 
         private static void AddFluentMigrator_SqlServer(IServiceCollection services, IConfiguration configuration)

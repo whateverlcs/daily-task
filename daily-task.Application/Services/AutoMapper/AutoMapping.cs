@@ -15,6 +15,7 @@ namespace daily_task.Application.Services.AutoMapper
         {
             CreateMap<NewTask, Domain.Entities.Task>();
             CreateMap<ProfileDisplayModel, Domain.Entities.Profile>();
+            CreateMap<RewardDisplayModel, Domain.Entities.Reward>();
         }
 
         private void DomainToResponse()
@@ -27,6 +28,7 @@ namespace daily_task.Application.Services.AutoMapper
 
             CreateMap<Domain.Entities.Rank, RankDisplayModel>();
             CreateMap<Domain.Entities.Profile, ProfileDisplayModel>();
+            CreateMap<Domain.Entities.Reward, RewardDisplayModel>();
         }
     }
 }
