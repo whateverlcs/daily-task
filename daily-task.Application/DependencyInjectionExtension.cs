@@ -4,18 +4,15 @@ using daily_task.Application.UseCases.Profile.Register;
 using daily_task.Application.UseCases.Profile.Update;
 using daily_task.Application.UseCases.Rank.GetAllRanks;
 using daily_task.Application.UseCases.Reward.GetAllRewards;
+using daily_task.Application.UseCases.Reward.GetById;
 using daily_task.Application.UseCases.Reward.Register;
+using daily_task.Application.UseCases.Reward.Update;
 using daily_task.Application.UseCases.Task.GetAllTasks;
 using daily_task.Application.UseCases.Task.GetById;
 using daily_task.Application.UseCases.Task.Register;
 using daily_task.Application.UseCases.Task.Update;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace daily_task.Application
 {
@@ -46,7 +43,9 @@ namespace daily_task.Application
             services.AddScoped<IGetAllRanksUseCase, GetAllRanksUseCase>();
             services.AddScoped<IGetProfileUseCase, GetProfileUseCase>();
             services.AddScoped<IRegisterRewardUseCase, RegisterRewardUseCase>();
+            services.AddScoped<IUpdateRewardUseCase, UpdateRewardUseCase>();
             services.AddScoped<IGetAllRewardsUseCase, GetAllRewardsUseCase>();
+            services.AddScoped<IGetRewardByIdUseCase, GetRewardByIdUseCase>();
         }
     }
 }
