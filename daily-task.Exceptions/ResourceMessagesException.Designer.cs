@@ -70,6 +70,33 @@ namespace daily_task.Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The reward gold is empty..
+        /// </summary>
+        public static string REWARD_GOLD_EMPTY {
+            get {
+                return ResourceManager.GetString("REWARD_GOLD_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The reward name is empty..
+        /// </summary>
+        public static string REWARD_NAME_EMPTY {
+            get {
+                return ResourceManager.GetString("REWARD_NAME_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The reward could not be found..
+        /// </summary>
+        public static string REWARD_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("REWARD_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The task description is empty..
         /// </summary>
         public static string TASK_DESCRIPTION_EMPTY {

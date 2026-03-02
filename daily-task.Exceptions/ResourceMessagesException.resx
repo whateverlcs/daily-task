@@ -120,6 +120,15 @@
   <data name="PROFILE_NOT_FOUND" xml:space="preserve">
     <value>The profile could not be found.</value>
   </data>
+  <data name="REWARD_GOLD_EMPTY" xml:space="preserve">
+    <value>The reward gold is empty.</value>
+  </data>
+  <data name="REWARD_NAME_EMPTY" xml:space="preserve">
+    <value>The reward name is empty.</value>
+  </data>
+  <data name="REWARD_NOT_FOUND" xml:space="preserve">
+    <value>The reward could not be found.</value>
+  </data>
   <data name="TASK_DESCRIPTION_EMPTY" xml:space="preserve">
     <value>The task description is empty.</value>
   </data>
