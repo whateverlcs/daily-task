@@ -91,7 +91,7 @@ namespace daily_task.UI.ViewModels
 
         public void EditReward(int id) { }
 
-        public void AddReward() { }
+        public void AddReward() => _ = ActiveView.OpenItem<CreateRewardViewModel>();
 
         public void ShowMessageFlashAsync(string messageType, List<string> messages)
         {

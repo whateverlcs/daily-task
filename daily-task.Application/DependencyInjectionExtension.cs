@@ -4,6 +4,7 @@ using daily_task.Application.UseCases.Profile.Register;
 using daily_task.Application.UseCases.Profile.Update;
 using daily_task.Application.UseCases.Rank.GetAllRanks;
 using daily_task.Application.UseCases.Reward.GetAllRewards;
+using daily_task.Application.UseCases.Reward.Register;
 using daily_task.Application.UseCases.Task.GetAllTasks;
 using daily_task.Application.UseCases.Task.GetById;
 using daily_task.Application.UseCases.Task.Register;
@@ -44,6 +45,7 @@ namespace daily_task.Application
             services.AddScoped<IUpdateProfileUseCase, UpdateProfileUseCase>();
             services.AddScoped<IGetAllRanksUseCase, GetAllRanksUseCase>();
             services.AddScoped<IGetProfileUseCase, GetProfileUseCase>();
+            services.AddScoped<IRegisterRewardUseCase, RegisterRewardUseCase>();
             services.AddScoped<IGetAllRewardsUseCase, GetAllRewardsUseCase>();
         }
     }
