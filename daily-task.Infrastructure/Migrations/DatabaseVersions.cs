@@ -12,5 +12,6 @@ namespace daily_task.Infrastructure.Migrations
         public const int ADD_GOLD_TABLE_TASK = 2;
         public const int TABLE_RANK = 3;
         public const int TABLE_PROFILE = 4;
+        public const int TABLE_REWARD = 5;
     }
 }
