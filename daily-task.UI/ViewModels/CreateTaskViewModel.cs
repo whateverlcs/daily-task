@@ -1,6 +1,8 @@
 ﻿using Caliburn.Micro;
 using daily_task.Application.Helpers;
 using daily_task.Application.Models;
+using daily_task.Application.UseCases.Profile.GetProfile;
+using daily_task.Application.UseCases.Profile.Update;
 using daily_task.Application.UseCases.Task.Register;
 using daily_task.Domain.Enums;
 using daily_task.Exceptions.ExceptionsBase;
@@ -87,10 +89,14 @@ namespace daily_task.UI.ViewModels
         private Notifier _notifier;
 
         private readonly IRegisterTaskUseCase _registerTaskUseCase;
+        private readonly IGetProfileUseCase _getProfileUseCase;
+        private readonly IUpdateProfileUseCase _updateProfileUseCase;
 
-        public CreateTaskViewModel(IRegisterTaskUseCase registerTaskUseCase, Notifier notifier)
+        public CreateTaskViewModel(IRegisterTaskUseCase registerTaskUseCase, IGetProfileUseCase getProfileUseCase, IUpdateProfileUseCase updateProfileUseCase, Notifier notifier)
         {
             _registerTaskUseCase = registerTaskUseCase;
+            _getProfileUseCase = getProfileUseCase;
+            _updateProfileUseCase = updateProfileUseCase;
             _notifier = notifier;
         }
 
@@ -119,11 +125,14 @@ namespace daily_task.UI.ViewModels
                     Description = Description,
                     Priority = SelectedPriority != null ? (Priority)SelectedPriority.Id : new Priority(),
                     Status = Status.Active,
-                    Gold = SelectedPriority != null ? $"{((Priority)SelectedPriority.Id).GetRandomGold()}g" : string.Empty
+                    Gold = SelectedPriority != null ? $"{((Priority)SelectedPriority.Id).GetRandomGold()}g" : string.Empty,
+                    Active = true
                 });
 
                 if (sucess)
                 {
+                    await UpdateProfileAsync();
+
                     ShowMessageFlashAsync("Success", ["Task created successfully!"]);
                     ClearFields();
                 }
@@ -145,6 +154,15 @@ namespace daily_task.UI.ViewModels
                 EnableFields = true;
                 Loading = false;
             }
+        }
+
+        public async System.Threading.Tasks.Task UpdateProfileAsync()
+        {
+            var profile = await _getProfileUseCase.Execute();
+
+            profile.TasksCreated += 1;
+
+            await _updateProfileUseCase.Execute(profile);
         }
 
         public void ShowMessageFlashAsync(string messageType, List<string> messages)

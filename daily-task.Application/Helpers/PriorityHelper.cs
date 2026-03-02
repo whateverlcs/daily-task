@@ -31,5 +31,15 @@ namespace daily_task.Application.Helpers
                 _ => 0
             };
         }
+
+        public static Priority ToPriorityEnum(this string priorityName)
+        {
+            if (Enum.TryParse<Priority>(priorityName.Replace(" ", "_"), true, out var priority))
+            {
+                return priority;
+            }
+
+            return Priority.Low;
+        }
     }
 }
