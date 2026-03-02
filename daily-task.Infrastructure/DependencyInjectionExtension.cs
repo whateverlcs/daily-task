@@ -1,5 +1,7 @@
 ﻿using daily_task.Domain.Enums;
 using daily_task.Domain.Repositories;
+using daily_task.Domain.Repositories.Profile;
+using daily_task.Domain.Repositories.Rank;
 using daily_task.Domain.Repositories.Task;
 using daily_task.Infrastructure.DataAccess;
 using daily_task.Infrastructure.DataAccess.Repositories;
@@ -47,6 +49,10 @@ namespace daily_task.Infrastructure
             services.AddScoped<ITaskWriteOnlyRepository, TaskRepository>();
             services.AddScoped<ITaskReadOnlyRepository, TaskRepository>();
             services.AddScoped<ITaskUpdateOnlyRepository, TaskRepository>();
+            services.AddScoped<IRankReadOnlyRepository, RankRepository>();
+            services.AddScoped<IProfileWriteOnlyRepository, ProfileRepository>();
+            services.AddScoped<IProfileReadOnlyRepository, ProfileRepository>();
+            services.AddScoped<IProfileUpdateOnlyRepository, ProfileRepository>();
         }
 
         private static void AddFluentMigrator_SqlServer(IServiceCollection services, IConfiguration configuration)

@@ -61,6 +61,15 @@ namespace daily_task.Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The profile could not be found..
+        /// </summary>
+        public static string PROFILE_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("PROFILE_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The task description is empty..
         /// </summary>
         public static string TASK_DESCRIPTION_EMPTY {

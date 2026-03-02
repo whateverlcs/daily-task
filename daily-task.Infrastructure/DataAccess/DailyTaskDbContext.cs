@@ -15,6 +15,8 @@ namespace daily_task.Infrastructure.DataAccess
         }
 
         public DbSet<Entities.Task> Tasks { get; set; }
+        public DbSet<Entities.Rank> Ranks { get; set; }
+        public DbSet<Entities.Profile> Profile { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

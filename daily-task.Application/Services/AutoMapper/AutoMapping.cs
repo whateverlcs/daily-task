@@ -14,6 +14,7 @@ namespace daily_task.Application.Services.AutoMapper
         private void RequestToDomain()
         {
             CreateMap<NewTask, Domain.Entities.Task>();
+            CreateMap<ProfileDisplayModel, Domain.Entities.Profile>();
         }
 
         private void DomainToResponse()
@@ -23,6 +24,9 @@ namespace daily_task.Application.Services.AutoMapper
                     src.Priority.ToString().Replace("_", " ")))
                 .ForMember(dest => dest.CreatedDate, opt => opt.MapFrom(src =>
                     $"Criado em {src.CreatedOn:dd/MM}"));
+
+            CreateMap<Domain.Entities.Rank, RankDisplayModel>();
+            CreateMap<Domain.Entities.Profile, ProfileDisplayModel>();
         }
     }
 }

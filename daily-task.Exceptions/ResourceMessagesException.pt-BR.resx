@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="PROFILE_NOT_FOUND" xml:space="preserve">
+    <value>Não foi possível encontrar o perfil.</value>
+  </data>
   <data name="TASK_DESCRIPTION_EMPTY" xml:space="preserve">
     <value>A descrição da task está vazia.</value>
   </data>
