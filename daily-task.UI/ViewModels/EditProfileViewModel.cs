@@ -43,7 +43,7 @@ namespace daily_task.UI.ViewModels
             {
                 _username = value;
 
-                if(_profileData.Id is not 0)
+                if (_profileData.Id is not 0)
                     _profileData.User = value;
 
                 NotifyOfPropertyChange(() => Username);

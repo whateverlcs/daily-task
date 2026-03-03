@@ -116,7 +116,6 @@ namespace daily_task.UI.ViewModels
                 Name = task.Name,
                 Description = task.Description,
                 Priority = task.Priority.ToPriorityEnum(),
-                Status = Status.Active,
                 Gold = task.Gold,
                 Active = false
             });

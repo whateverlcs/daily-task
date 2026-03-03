@@ -1,7 +1,4 @@
 ﻿using daily_task.UI.Filters;
-using System.Configuration;
-using System.Data;
-using System.Windows;
 
 namespace daily_task.UI
 {
@@ -19,5 +16,4 @@ namespace daily_task.UI
             };
         }
     }
-
 }

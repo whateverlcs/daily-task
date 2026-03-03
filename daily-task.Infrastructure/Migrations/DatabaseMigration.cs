@@ -1,15 +1,9 @@
-﻿using Dapper;
-using daily_task.Domain.Enums;
+﻿using daily_task.Domain.Enums;
+using daily_task.Domain.Extensions;
+using Dapper;
 using FluentMigrator.Runner;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using daily_task.Infrastructure.Extensions;
-using daily_task.Domain.Extensions;
 
 namespace daily_task.Infrastructure.Migrations
 {
