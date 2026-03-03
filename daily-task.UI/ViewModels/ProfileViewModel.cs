@@ -119,6 +119,6 @@ namespace daily_task.UI.ViewModels
             Loading = false;
         }
 
-        public void EditUsername() { }
+        public void EditUsername() => _ = ActiveView.OpenItem<EditProfileViewModel>();
     }
 }
