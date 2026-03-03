@@ -23,7 +23,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="10"></RowDefinition>
-            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
             <RowDefinition Height="10"></RowDefinition>
             <RowDefinition Height="60"></RowDefinition>
             <RowDefinition Height="10"></RowDefinition>
@@ -31,9 +31,37 @@
             <RowDefinition Height="10"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" Margin="0,0,15,0" ToolTip="Gold Balance" HorizontalAlignment="Right" VerticalAlignment="Center">
-            <materialDesign:PackIcon Kind="Gold" Foreground="#D97706" VerticalAlignment="Center" Width="28" Height="28"/>
-            <TextBlock Text="{Binding TotalGold}" Foreground="#D97706" FontWeight="Medium" FontSize="18" Margin="5,4,0,0"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+            <Button Background="Transparent" BorderThickness="0" Padding="0"
+                VerticalAlignment="Center" HorizontalAlignment="Left" Width="100" Height="100" ToolTip="Click to access the home">
+                <StackPanel>
+                    <materialDesign:PackIcon Kind="Home" Foreground="#0D9488" Width="50" Height="50" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Home" Foreground="#0D9488" FontWeight="Medium" FontSize="18" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
+            <Button Background="Transparent" BorderThickness="0" Padding="0"
+                cal:Message.Attach="GoToRewards()"
+                VerticalAlignment="Center" HorizontalAlignment="Left" Width="100" Height="100" ToolTip="Click to access the rewards">
+                <StackPanel>
+                    <materialDesign:PackIcon Kind="License" Foreground="#0F172A" Width="50" Height="50" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Rewards" Foreground="#0F172A" FontWeight="Medium" FontSize="18" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
+            <Button Background="Transparent" BorderThickness="0" Padding="0"
+                cal:Message.Attach="GoToProfile()"
+                VerticalAlignment="Center" HorizontalAlignment="Left" Width="100" Height="100" ToolTip="Click to access the profile">
+                <StackPanel>
+                    <materialDesign:PackIcon Kind="Account" Foreground="#0F172A" Width="50" Height="50" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Profile" Foreground="#0F172A" FontWeight="Medium" FontSize="18" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" ToolTip="Gold Balance" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <materialDesign:PackIcon Kind="Gold" Foreground="#D97706" VerticalAlignment="Center" HorizontalAlignment="Center" Width="50" Height="50"/>
+            <TextBlock Text="{Binding TotalGold}" Foreground="#D97706" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Medium" FontSize="18" />
         </StackPanel>
 
         <StackPanel x:Name="EmptyStatePanel" Grid.Row="3" Grid.RowSpan="3" Grid.Column="1" Visibility="{Binding ShowMessageWithNoTasks, Converter={StaticResource VisibilityConverter}}"

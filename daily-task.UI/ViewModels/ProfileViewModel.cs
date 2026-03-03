@@ -120,5 +120,9 @@ namespace daily_task.UI.ViewModels
         }
 
         public void EditUsername() => _ = ActiveView.OpenItem<EditProfileViewModel>();
+
+        public void GoToHome() => _ = ActiveView.OpenItem<IndexViewModel>();
+
+        public void GoToRewards() => _ = ActiveView.OpenItem<RewardViewModel>();
     }
 }

@@ -154,6 +154,10 @@ namespace daily_task.UI.ViewModels
 
         public void AddTask() => _ = ActiveView.OpenItem<CreateTaskViewModel>();
 
+        public void GoToRewards() => _ = ActiveView.OpenItem<RewardViewModel>();
+
+        public void GoToProfile() => _ = ActiveView.OpenItem<ProfileViewModel>();
+
         public void ShowMessageFlashAsync(string messageType, List<string> messages)
         {
             foreach (var message in messages)
