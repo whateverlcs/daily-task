@@ -3,6 +3,7 @@
     public class ProfileDisplayModel
     {
         public int Id { get; set; }
+        public string User { get; set; } = string.Empty;
         public int TasksCreated { get; set; }
         public int TasksCompleted { get; set; }
         public long GoldEarned { get; set; }

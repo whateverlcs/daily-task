@@ -37,6 +37,7 @@ namespace daily_task.Application.UseCases.Profile.GetProfile
             {
                 profile = new Domain.Entities.Profile
                 {
+                    User = "John Doe",
                     TasksCreated = 0,
                     TasksCompleted = 0,
                     GoldEarned = 0,
