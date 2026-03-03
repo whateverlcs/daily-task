@@ -42,6 +42,7 @@ namespace daily_task.UI
             services.AddTransient<RewardViewModel>();
             services.AddTransient<CreateRewardViewModel>();
             services.AddTransient<EditRewardViewModel>();
+            services.AddTransient<ProfileViewModel>();
             services.AddSingleton<IWindowManager, WindowManager>();
             services.AddSingleton<IEventAggregator, EventAggregator>();
 

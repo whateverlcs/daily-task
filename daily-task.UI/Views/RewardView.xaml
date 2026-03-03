@@ -10,7 +10,7 @@
              Background="#F8FAFC"
              FontFamily="{DynamicResource RobotoFont}"
              mc:Ignorable="d"
-             d:DesignHeight="600" d:DesignWidth="700">
+             d:DesignHeight="650" d:DesignWidth="700">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="VisibilityConverter" />
         <helper:InvertedBooleanToVisibilityConverterHelper x:Key="InvertedVisibilityConverter"/>
