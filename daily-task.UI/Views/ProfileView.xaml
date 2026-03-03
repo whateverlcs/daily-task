@@ -58,7 +58,7 @@ VerticalAlignment="Center" HorizontalAlignment="Left" Width="100" Height="100" T
             </Button>
         </StackPanel>
 
-        <TextBlock Grid.Row="3" Grid.Column="1" Text="Perfil"
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="Profile"
                FontSize="32" FontWeight="Bold" Foreground="#0F172A"
                HorizontalAlignment="Center" Margin="0,40"/>
 

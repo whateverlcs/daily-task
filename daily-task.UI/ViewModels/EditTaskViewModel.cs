@@ -165,7 +165,6 @@ namespace daily_task.UI.ViewModels
                     Name = Title,
                     Description = Description,
                     Priority = (Priority)SelectedPriority.Id,
-                    Status = Status.Active,
                     Gold = PriorityOriginal != SelectedPriority.Priority ? $"{((Priority)SelectedPriority.Id).GetRandomGold()}g" : Gold,
                     Active = true
                 });
