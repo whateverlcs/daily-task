@@ -9,7 +9,7 @@
              Background="#F8FAFC"
              FontFamily="{DynamicResource RobotoFont}"
              mc:Ignorable="d"
-             d:DesignHeight="520" d:DesignWidth="950">
+             d:DesignHeight="620" d:DesignWidth="950">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="VisibilityConverter" />
     </UserControl.Resources>
@@ -20,6 +20,9 @@
             <ColumnDefinition Width="50" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="10"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="10"/>
@@ -27,11 +30,39 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="1" Text="Perfil"
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+            <Button Background="Transparent" BorderThickness="0" Padding="0"
+cal:Message.Attach="GoToHome()"
+VerticalAlignment="Center" HorizontalAlignment="Left" Width="100" Height="100" ToolTip="Click to access the home">
+                <StackPanel>
+                    <materialDesign:PackIcon Kind="Home" Foreground="#0F172A" Width="50" Height="50" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Home" Foreground="#0F172A" FontWeight="Medium" FontSize="18" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
+            <Button Background="Transparent" BorderThickness="0" Padding="0"
+cal:Message.Attach="GoToRewards()"
+VerticalAlignment="Center" HorizontalAlignment="Left" Width="100" Height="100" ToolTip="Click to access the rewards">
+                <StackPanel>
+                    <materialDesign:PackIcon Kind="License" Foreground="#0F172A" Width="50" Height="50" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Rewards" Foreground="#0F172A" FontWeight="Medium" FontSize="18" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
+            <Button Background="Transparent" BorderThickness="0" Padding="0"
+VerticalAlignment="Center" HorizontalAlignment="Left" Width="100" Height="100" ToolTip="Click to access the profile">
+                <StackPanel>
+                    <materialDesign:PackIcon Kind="Account" Foreground="#0D9488" Width="50" Height="50" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Profile" Foreground="#0D9488" FontWeight="Medium" FontSize="18" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="Perfil"
                FontSize="32" FontWeight="Bold" Foreground="#0F172A"
                HorizontalAlignment="Center" Margin="0,40"/>
 
-        <Border Grid.Row="1" Grid.Column="1" Background="White" CornerRadius="15"
+        <Border Grid.Row="4" Grid.Column="1" Background="White" CornerRadius="15"
             BorderBrush="#E2E8F0" BorderThickness="1"
             Width="850" Height="180" HorizontalAlignment="Center">
             <Grid>
@@ -70,7 +101,7 @@
             </Grid>
         </Border>
 
-        <Canvas Grid.Column="1" Grid.Row="2" Height="40" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Canvas Grid.Column="1" Grid.Row="5" Height="40" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <Path Stroke="#E2E8F0" StrokeThickness="2" StrokeStartLineCap="Round" StrokeEndLineCap="Round">
                 <Path.Data>
                     <PathGeometry>
@@ -98,7 +129,7 @@
             </Path>
         </Canvas>
 
-        <Grid Grid.Row="3" Grid.Column="1" Width="850" HorizontalAlignment="Center" Margin="0,30,0,0">
+        <Grid Grid.Row="6" Grid.Column="1" Width="850" HorizontalAlignment="Center" Margin="0,30,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="20"/>
